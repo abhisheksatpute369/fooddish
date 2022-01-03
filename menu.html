@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>menu page</title>
+        <style>
+            #container{
+                width:80%;
+                height:1000px;
+                margin: auto;
+                margin-top: 50px;
+                display:grid;
+                justify-content: space-evenly;
+                grid-template-columns: repeat(4, 23%);
+                box-shadow: 2px 2px 15px;
+            }
+            #container>div{
+                border: 1px solid green;
+                height:250px;
+                margin-top: 20px;
+                
+            }
+            button{
+                padding: 5px 10px;
+                background-color: rgb(252, 124, 188);
+                color:rgb(131, 2, 66);
+                margin-left: 1000px;
+            }
+        </style>
+    </head>
+    <body>
+        <button id="cartpage">Go To cart</button>
+        <div id="container">
+            
+
+        </div>
+    </body>
+</html>
+<script>
+    let url="https://www.themealdb.com/api.php?ref=apilist.fun";
+    async function getdishesh()
+    {
+        try{
+            let res= await fetch(url);
+            let responce= await res.json();
+            let dishdata= responce.data;
+            console.log(responce);
+            appenddish(dishdata);
+        }
+        catch(err){
+            console.log("error:", err)
+        }
+        
+    }
+    getdishesh();
+
+
+    function apppenddish(arr)
+    {
+        arr.map(function(dish)
+        {
+            let inner= document.createElement("div");
+
+            let image= document.createElement("image");
+            image.src = dish.imageurl;
+
+            let name = document.createElement("h4");
+            name.textContent=dish.name;
+
+            let price = document.createElement("p")
+            price.textContent=dish.price;
+
+            let cart= document.createElement("button");
+            cart.textContent="Add to Cart";
+            cart.addEventListener("click", addcart());
+
+            inner.append(image, name, price, cart);
+            var outer=document.getElementById("container");
+            outer.append(inner);
+
+        });
+    }
+
+    function addcart()
+    {
+       
+    }
+    document.getElementById("cartpage").addEventListener("click", function(){
+            window.location.href="cart.html";
+        })
+
+    
+</script>

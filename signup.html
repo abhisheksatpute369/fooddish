@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            signup page
+        </title>
+        <style>
+            #container{
+                width:50%;
+                height:700px;
+                border: 1px solid gray;
+                border-radius: 20px;
+                margin: auto;
+                padding-left: 50px;
+            }
+            input{
+                width:80%;
+                height:40px;
+                border: 1px solid hotpink;
+                border-radius: 10px;
+            }
+            button{
+                padding: 5px 20px;
+                color:rgb(119, 4, 62);
+                background-color: hotpink;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <h3>Email id:</h3><br>
+            <input type="email" id="mail" placeholder="email id"/><br><br>
+            <h3>phone number:</h3><br>
+            <input type="number" id="phone" placeholder="phone number"/><br><br>
+            <h3>Full name</h3><br>
+            <input type="text" id="name" placeholder="enter full name"/><br><br>
+            <h3>Enter PAssword</h3><br>
+            <input type="password" id="pass" placeholder="password"/><br><br>
+            <button id="add" onclick="adduser()">SignUp</button>
+        </div>
+    </body>
+</html>
+<script>
+    function adduser()
+    {
+        arr= JSON.parse(localStorage.getItem("userdata"))||[];
+        var email= document.getElementById("mail").value;
+        var phone= document.getElementById("phone").value;
+        var name= document.getElementById("name").value;
+        var password= document.getElementById("pass").value;
+
+        var userobj={
+            email: email,
+            phonee: phone,
+            name: name,
+            password: password,
+        }
+
+        arr.push(userobj);
+        localStorage.setItem("userdata", JSON.stringify(arr));
+
+
+    }
+</script>

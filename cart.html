@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>cart items</title>
+        <style>
+            #cart{
+                width:50%;
+                height:600px;
+                margin: auto;
+                border: 1px solid gray;
+            }
+            button{
+                padding: 5px 10px;
+                background-color: rgb(252, 124, 188);
+                color:rgb(131, 2, 66);
+                margin-left: 1000px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="cart">
+            <h4>Your cart:</h4>
+
+        </div>
+        <button id="check">Checkout</button>
+    </body>
+</html>
+<script>
+     document.getElementById("check").addEventListener("click", function(){
+            window.location.href="checkout.html"
+        })
+    var item= JSON.parse(localStorage.getItem("cartitems"));
+    item.map(function(dish, index)
+    {
+        var image=document.createElement("img");
+        image.src=dish.imageurl;
+
+        var dname= document.createElement("h3");
+        dname.textContent=dish.name;
+
+        var price= document.createElement("p");
+        price.textContent=dish.price;
+
+        var remove= document.createElement("button");
+        remove.textContent="delete";
+        remove.addEventListener("click", delettask)
+       
+        function delettask(index)
+        {
+            item.splice(index, 1);
+        }
+
+        var check= document.createElement("button");
+        check.textContent="Chekcout";
+        check.addEventListener("click", function(){
+            window.location.href="checkout.html"
+        })
+    });
+   
+</script>
+
